@@ -9,7 +9,7 @@ pipeline {
         COURSE = "jenkins"
     }
     options {
-        timeout(time :10, unit: 'SECONDS')
+        // timeout(time :10, unit: 'SECONDS')
         disableConcurrentBuilds()
     }
     parameters {
@@ -23,28 +23,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "buliding"    
+                script {
+                   sh """
+                      echo "building"
+                      echo $COURSE
+                      env
+                      echo "Hello ${params.PERSON}"
+                      echo "Biography: ${params.BIOGRAPHY}"
+                      echo "Toggle: ${params.TOGGLE}"
+                      echo "Choice: ${params.CHOICE}"
+                      echo "Password: ${params.PASSWORD}"
+                    """ 
+                }    
             }
         }
         stage('Test') {
             steps {
-                script {
-                   sh """
-                      echo "testing"
-                      echo $COURSE
-                    //   sleep 10
-                      env
-                      echo "Hello ${params.PERSON}"
-
-                      echo "Biography: ${params.BIOGRAPHY}"
-
-                      echo "Toggle: ${params.TOGGLE}"
-
-                      echo "Choice: ${params.CHOICE}"
-
-                      echo "Password: ${params.PASSWORD}"
-                    """ 
-                }
+                echo "testing"
             }
         }
         stage('Deploy') {
