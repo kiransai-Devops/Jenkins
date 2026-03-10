@@ -19,6 +19,7 @@ pipeline {
                    sh """
                       echo "testing"
                       echo $COURSE
+                      env
                     """ 
                 }
             }
