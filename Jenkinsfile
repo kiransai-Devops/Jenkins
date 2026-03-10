@@ -22,5 +22,17 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo "i will run if success or not"
+            cleanws ()
+        }
+        success {
+            echo "i will run if success"
+        }
+        failuer {
+            echo "i will run if failure"
+        }
+    }
 }
 
