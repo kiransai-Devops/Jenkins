@@ -55,7 +55,13 @@ pipeline {
                 expression { "$params.DEPLOY" = "true" } 
             }
             steps {
-                echo "deploying"
+                script {
+                    sh """
+                       echo "deploying"
+                       
+                    """
+                }
+                
             }
         }
     }
